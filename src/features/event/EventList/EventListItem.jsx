@@ -36,12 +36,16 @@ class EventListItem extends Component {
         </Segment>
         <Segment secondary>
           <List horizontal>
-            {attendees.map(attendee => (
-              <EventListAttendee
-                key={attendee.id}
-                photoUrl={attendee.photoURL}
-              />
-            ))}
+            {/* If statemenet checks to see if
+            attendees exist to avoid
+            map error */}
+            {attendees &&
+              attendees.map(attendee => (
+                <EventListAttendee
+                  key={attendee.id}
+                  photoUrl={attendee.photoURL}
+                />
+              ))}
           </List>
         </Segment>
         <Segment clearing>

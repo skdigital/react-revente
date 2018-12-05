@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Button } from 'semantic-ui-react';
 import EventForm from '../EventForm/EventForm';
 import EventList from '../EventList/EventList';
+import cuid from 'cuid';
 
 const eventsDashboardMockData = [
   {
@@ -68,6 +69,13 @@ class EventDashboard extends Component {
     this.setState({ isOpen: false });
   };
 
+  handleCreateEvent = newEvent => {
+    newEvent.id = cuid();
+    newEvent.hostPhotoURL = 'assets/user.png';
+    const updatedEvents = [...this.state.eventMocks, newEvent];
+    this.setState({ eventMocks: updatedEvents, isOpen: false });
+  };
+
   render() {
     return (
       <Grid>
@@ -81,7 +89,10 @@ class EventDashboard extends Component {
             content="Create Event"
           />
           {this.state.isOpen && (
-            <EventForm handleCancel={this.handleFormClose} />
+            <EventForm
+              createEvent={this.handleCreateEvent}
+              handleCancel={this.handleFormClose}
+            />
           )}
         </Grid.Column>
       </Grid>
