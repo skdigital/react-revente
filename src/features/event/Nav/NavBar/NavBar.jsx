@@ -19,6 +19,7 @@ class NavBar extends Component {
                 positive
                 inverted
                 content="Create Event"
+                color="teal"
               />
             </Menu.Item>
             <Menu.Item position="right">

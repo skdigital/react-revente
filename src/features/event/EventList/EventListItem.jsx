@@ -5,24 +5,17 @@ import EventListAttendee from './EventListAttendee';
 class EventListItem extends Component {
   state = {};
   render() {
-    const {
-      title,
-      date,
-      description,
-      hostedBy,
-      attendees,
-      hostPhotoURL
-    } = this.props.event;
+    const { event, onEventOpen, deleteEvent } = this.props;
     return (
       <Segment.Group>
         <Segment>
           <Item.Group>
             <Item>
-              <Item.Image size="tiny" circular src={hostPhotoURL} />
+              <Item.Image size="tiny" circular src={event.hostPhotoURL} />
               <Item.Content>
-                <Item.Header as="a">{title}</Item.Header>
+                <Item.Header as="a">{event.title}</Item.Header>
                 <Item.Description>
-                  Hosted by <a>{hostedBy}</a>
+                  Hosted by <a>{event.hostedBy}</a>
                 </Item.Description>
               </Item.Content>
             </Item>
@@ -30,7 +23,7 @@ class EventListItem extends Component {
         </Segment>
         <Segment>
           <span>
-            <Icon name="clock" /> {date} |
+            <Icon name="clock" /> {event.date} |
             <Icon name="marker" /> time
           </span>
         </Segment>
@@ -39,8 +32,8 @@ class EventListItem extends Component {
             {/* If statemenet checks to see if
             attendees exist to avoid
             map error */}
-            {attendees &&
-              attendees.map(attendee => (
+            {event.attendees &&
+              event.attendees.map(attendee => (
                 <EventListAttendee
                   key={attendee.id}
                   photoUrl={attendee.photoURL}
@@ -49,14 +42,24 @@ class EventListItem extends Component {
           </List>
         </Segment>
         <Segment clearing>
-          <span>{description}</span>
-          <Button
-            style={{ marginTop: 10 }}
-            as="a"
-            color="teal"
-            floated="right"
-            content="View"
-          />
+          <span>{event.description}</span>
+          <Item.Group>
+            <Button
+              basic
+              as="a"
+              color="red"
+              floated="right"
+              content="Delete"
+              onClick={deleteEvent(event.id)}
+            />
+            <Button
+              as="a"
+              color="teal"
+              floated="right"
+              content="View"
+              onClick={onEventOpen(event)}
+            />
+          </Item.Group>
         </Segment>
       </Segment.Group>
     );

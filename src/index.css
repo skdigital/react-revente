@@ -2,6 +2,11 @@ body {
   background-color: rgb(234, 234, 234) !important;
 }
 
+.ui.positive.button,
+.ui.positive.buttons .button {
+  background-color: #00b5ad;
+}
+
 /*timepicker style*/
 .react-datepicker__time-container
   .react-datepicker__time
