@@ -9,6 +9,8 @@ import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import EventForm from '../../features/event/EventForm/EventForm';
 import HomePage from '../../features/home/HomePage';
 
+import TestComponent from '../../features/testarea/TestComponent';
+
 import { Container } from 'semantic-ui-react';
 
 class App extends Component {
@@ -26,6 +28,7 @@ class App extends Component {
               <NavBar onClick={() => console.log(this.props.location)} />
               <Container className="main">
                 <Switch>
+                  <Route path="/testComponent" component={TestComponent} />
                   <Route path="/events" component={EventDashboard} />
                   <Route path="/events/:id" component={EventDetailedPage} />
                   <Route path="/people" component={PeopleDashboard} />
